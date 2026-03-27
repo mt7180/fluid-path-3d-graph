@@ -1,18 +1,22 @@
 {
   "name": "vis-trainees",
+  "homepage": "https://mt7180.github.io",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "three": "^0.172.0"
   },
   "devDependencies": {
     "@types/three": "^0.172.0",
+    "gh-pages": "^6.3.0",
     "typescript": "^5.7.0",
     "vite": "^6.0.0"
   }
