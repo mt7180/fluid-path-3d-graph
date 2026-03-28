@@ -27,7 +27,7 @@ const DEFAULT_CONFIG: SimulationConfig = {
 };
 
 const MIN_DISTANCE = 7.0;
-const MIN_DISTANCE_SQUARED = 49.0;
+const MIN_DISTANCE_SQUARED = MIN_DISTANCE * MIN_DISTANCE;
 const TWO_PI = Math.PI * 2;
 const REFERENCE_FPS = 60;
 
