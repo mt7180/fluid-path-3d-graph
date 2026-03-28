@@ -14,9 +14,9 @@ type NodeVisual = {
   targetInnerBaseOpacity: number;
 };
 
-const BASE_RADIUS = 3.5;
-const RADIUS_STEP = 0.5;
-const MAX_RADIUS = 7.0;
+const BASE_RADIUS = 2.0;
+const RADIUS_STEP = 1.0;
+const MAX_RADIUS = 8.0;
 
 const DEFAULT_OUTER_OPACITY = 0.4;
 const DEFAULT_EMISSIVE_INTENSITY = 0.35;

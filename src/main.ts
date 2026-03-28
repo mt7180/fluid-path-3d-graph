@@ -1,4 +1,5 @@
 import './styles/main.css';
+import * as THREE from 'three';
 import type { CatmullRomCurve3 } from 'three';
 import { buildGraphData } from './data/trainees';
 import { initScene } from './scene/sceneSetup';
@@ -44,6 +45,18 @@ function init() {
   }
   nodeRenderer.updatePositions(simulation.getNodes());
 
+  // Compute graph centroid after simulation pre-warm
+  const preWarmedNodes = simulation.getNodes();
+  const centroid = { x: 0, y: 0, z: 0 };
+  for (const node of preWarmedNodes) {
+    centroid.x += node.position.x;
+    centroid.y += node.position.y;
+    centroid.z += node.position.z;
+  }
+  centroid.x /= preWarmedNodes.length;
+  centroid.y /= preWarmedNodes.length;
+  centroid.z /= preWarmedNodes.length;
+
   const pathRenderer = new PathRenderer();
   pathRenderer.createPaths(graphData, scene);
 
@@ -61,6 +74,10 @@ function init() {
   const cameraController = new CameraController();
   cameraController.init(camera, renderer.domElement);
 
+  // Center camera on the actual graph centroid
+  const centroidVec = new THREE.Vector3(centroid.x, centroid.y, centroid.z);
+  cameraController.setInitialTarget(centroidVec);
+
   const raycaster = new RaycastInteraction();
   raycaster.init(camera, renderer.domElement, nodeMeshes);
 
@@ -77,7 +94,6 @@ function init() {
     energyFlow,
     infoPanel,
     labelRenderer,
-    cameraController,
     graphData,
   });
 

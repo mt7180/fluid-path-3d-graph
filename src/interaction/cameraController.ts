@@ -10,9 +10,9 @@ export class CameraController {
 
   private controls: OrbitControls | null = null;
 
-  private readonly defaultPosition = new THREE.Vector3(0, 8, 170);
+  private defaultPosition = new THREE.Vector3(0, 8, 170);
 
-  private readonly defaultTarget = new THREE.Vector3(0, 0, 0);
+  private defaultTarget = new THREE.Vector3(0, 0, 0);
 
   private readonly startTarget = new THREE.Vector3();
 
@@ -93,6 +93,26 @@ export class CameraController {
 
     this.transitionProgress = 0;
     this.isTransitioning = true;
+  }
+
+  setInitialTarget(target: THREE.Vector3): void {
+    this.defaultTarget.copy(target);
+    const controls = this.requireControls();
+    const camera = this.requireCamera();
+
+    // Shift camera so it maintains the same relative offset but looks at the new target
+    const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+    camera.position.copy(target).add(offset);
+
+    controls.target.copy(target);
+    controls.update();
+  }
+
+  setInitialPosition(position: THREE.Vector3): void {
+    this.defaultPosition.copy(position);
+    const camera = this.requireCamera();
+    camera.position.copy(position);
+    this.requireControls().update();
   }
 
   update(deltaTime: number): void {
