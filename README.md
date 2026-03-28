@@ -2,6 +2,8 @@
 
 An interactive 3D career path visualization built with Three.js and Vite. Trainee journeys — from birthplace through university, degree, first job, and placement to current role — are rendered as glowing crystal ball nodes connected by animated light-blue paths in a force-directed graph.
 
+> **Work In Progress**: Find the latest version of the project deployed on [GitHub Pages](https://mt7180.github.io/fluid-path-3d-graph/)
+
 ## Features
 
 - **3D force-directed graph** — nodes auto-arrange via physics simulation with repulsion, attraction, and layer constraints
