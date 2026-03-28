@@ -63,15 +63,11 @@ npm run build   # outputs to dist/
 npm run preview # preview production build locally
 ```
 
-> **Agentic Programming Notice**:  
->This project was created using an agentic orchestration programming workflow.  
-The codebase was produced through
-natural‑language instructions delegated to a coordinated team of AI agents inside
-a multi‑agent development environment. These agents collaborated, planned, and
-generated the implementation based on high‑level goals, architectural guidance,
-and iterative refinement.
+> **Disclosure**:  
+>This project was created using an **Agentic AI** approach: multi-agent orchestration.  
+The codebase was produced through natural‑language instructions delegated to a coordinated team of AI agents inside a multi‑agent development environment. These agents collaborated, planned, and generated the implementation based on high‑level goals, architectural guidance, and iterative refinement.
 All code, structure, and documentation emerged from this agentic process.  
 
-The agent role definitions and multi-agent workflow are based on the work of Burke Holland and just work like a charm!!:
+The agent role definitions and multi-agent workflow are based on the work of Burke Holland - they just work like a charm!!:
 - https://gist.github.com/burkeholland/0e68481f96e94bbb98134fa6efd00436
 - https://www.youtube.com/watch?v=-BhfcPseWFQ
