@@ -10,7 +10,7 @@ export class CameraController {
 
   private controls: OrbitControls | null = null;
 
-  private readonly defaultPosition = new THREE.Vector3(0, 15, 130);
+  private readonly defaultPosition = new THREE.Vector3(0, 8, 170);
 
   private readonly defaultTarget = new THREE.Vector3(0, 0, 0);
 
@@ -44,7 +44,7 @@ export class CameraController {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
     this.controls.minDistance = 10;
-    this.controls.maxDistance = 250;
+    this.controls.maxDistance = 350;
     this.controls.screenSpacePanning = true;
     this.controls.enablePan = true;
     this.controls.rotateSpeed = 0.5;

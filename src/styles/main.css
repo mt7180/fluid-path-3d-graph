@@ -63,7 +63,7 @@ body {
   user-select: none;
   white-space: nowrap;
   transition: opacity 0.4s var(--transition-smooth), font-size 0.4s var(--transition-smooth), text-shadow 0.4s var(--transition-smooth);
-  transform: translateY(-50px);
+  transform: translateY(-16px);
   will-change: opacity, transform;
 }
 

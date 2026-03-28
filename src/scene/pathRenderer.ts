@@ -7,7 +7,7 @@ type NodePosition = { x: number; y: number; z: number };
 type PathEntry = {
   mesh: THREE.Mesh;
   curve: THREE.CatmullRomCurve3;
-  material: THREE.MeshBasicMaterial;
+  material: THREE.MeshStandardMaterial;
 };
 
 const TUBULAR_SEGMENTS = 64;
@@ -59,10 +59,14 @@ export class PathRenderer {
         RADIAL_SEGMENTS,
         false,
       );
-      const material = new THREE.MeshBasicMaterial({
+      const material = new THREE.MeshStandardMaterial({
         color: BASE_COLOR,
         transparent: true,
         opacity: BASE_OPACITY,
+        emissive: BASE_COLOR,
+        emissiveIntensity: 0.6,
+        roughness: 0.4,
+        metalness: 0.1,
       });
 
       const mesh = new THREE.Mesh(geometry, material);

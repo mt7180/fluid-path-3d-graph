@@ -12,20 +12,31 @@ export function initPostprocessing(
   composer: EffectComposer;
   bloomPass: UnrealBloomPass;
 } {
-  const composer = new EffectComposer(renderer);
+  const drawingBufferSize = renderer.getDrawingBufferSize(new THREE.Vector2());
+  const renderTarget = new THREE.WebGLRenderTarget(
+    drawingBufferSize.x,
+    drawingBufferSize.y,
+    {
+      samples: 4,
+      type: THREE.HalfFloatType,
+    }
+  );
+
+  const composer = new EffectComposer(renderer, renderTarget);
+  composer.setPixelRatio(renderer.getPixelRatio());
 
   const renderPass = new RenderPass(scene, camera);
   composer.addPass(renderPass);
 
   const bloomPass = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    1.2,
-    0.6,
-    0.15
+    0.8,
+    0.3,
+    0.2
   );
-  bloomPass.strength = 1.2;
-  bloomPass.radius = 0.6;
-  bloomPass.threshold = 0.15;
+  bloomPass.strength = 0.8;
+  bloomPass.radius = 0.3;
+  bloomPass.threshold = 0.2;
   composer.addPass(bloomPass);
 
   const outputPass = new OutputPass();
@@ -37,8 +48,10 @@ export function initPostprocessing(
 export function resizePostprocessing(
   composer: EffectComposer,
   width: number,
-  height: number
+  height: number,
+  pixelRatio: number
 ): void {
+  composer.setPixelRatio(pixelRatio);
   composer.setSize(width, height);
 
   for (const pass of composer.passes) {

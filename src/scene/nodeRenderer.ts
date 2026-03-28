@@ -19,15 +19,15 @@ const RADIUS_STEP = 0.5;
 const MAX_RADIUS = 7.0;
 
 const DEFAULT_OUTER_OPACITY = 0.4;
-const DEFAULT_EMISSIVE_INTENSITY = 0.6;
+const DEFAULT_EMISSIVE_INTENSITY = 0.35;
 const DEFAULT_INNER_BASE_OPACITY = 0.25;
 
-const HIGHLIGHT_EMISSIVE_INTENSITY = 1.0;
+const HIGHLIGHT_EMISSIVE_INTENSITY = 0.7;
 const HIGHLIGHT_SCALE_MULTIPLIER = 1.15;
 const HIGHLIGHT_INNER_BASE_OPACITY = 0.2;
 
-const TRAINEE_EMISSIVE_INTENSITY = 0.8;
-const TRAINEE_DIM_EMISSIVE_INTENSITY = 0.05;
+const TRAINEE_EMISSIVE_INTENSITY = 0.55;
+const TRAINEE_DIM_EMISSIVE_INTENSITY = 0.03;
 const TRAINEE_DIM_OUTER_OPACITY = 0.05;
 const TRAINEE_ACTIVE_INNER_BASE_OPACITY = 0.2;
 const TRAINEE_DIM_INNER_BASE_OPACITY = 0.05;
@@ -58,11 +58,11 @@ export class NodeRenderer {
         color: 0x6ab8f7,
         transparent: true,
         opacity: DEFAULT_OUTER_OPACITY,
-        roughness: 0.0,
+        roughness: 0.05,
         metalness: 0.0,
         transmission: 0.98,
         ior: 1.5,
-        thickness: 3.0,
+        thickness: 5.0,
         emissive: 0x2266cc,
         emissiveIntensity: DEFAULT_EMISSIVE_INTENSITY,
         clearcoat: 1.0,
@@ -158,6 +158,14 @@ export class NodeRenderer {
 
   getNodeMeshes(): Map<string, THREE.Object3D> {
     return this.nodeMeshes;
+  }
+
+  getNodeRadii(): Map<string, number> {
+    const radii = new Map<string, number>();
+    for (const [nodeId, visual] of this.visualsById) {
+      radii.set(nodeId, visual.baseRadius);
+    }
+    return radii;
   }
 
   private applyVisualTargets(): void {

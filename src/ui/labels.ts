@@ -29,7 +29,7 @@ export class LabelRenderer {
         return this.labelRenderer;
     }
 
-    createLabels(nodes: GraphNode[], scene: THREE.Scene): void {
+    createLabels(nodes: GraphNode[], scene: THREE.Scene, nodeRadii?: Map<string, number>): void {
         this.labels.clear();
 
         for (const node of nodes) {
@@ -38,10 +38,20 @@ export class LabelRenderer {
             div.textContent = node.label;
 
             const labelObj = new CSS2DObject(div);
-            labelObj.position.set(node.position.x, node.position.y, node.position.z);
+            const radius = nodeRadii?.get(node.id) ?? 3.5;
+            labelObj.position.set(node.position.x, node.position.y + radius + 1.5, node.position.z);
             scene.add(labelObj);
 
             this.labels.set(node.id, { css2dObject: labelObj, element: div });
+        }
+    }
+
+    updatePositions(nodes: Array<{ id: string; position: { x: number; y: number; z: number } }>, nodeRadii?: Map<string, number>): void {
+        for (const node of nodes) {
+            const labelData = this.labels.get(node.id);
+            if (!labelData) continue;
+            const radius = nodeRadii?.get(node.id) ?? 3.5;
+            labelData.css2dObject.position.set(node.position.x, node.position.y + radius + 1.5, node.position.z);
         }
     }
 
