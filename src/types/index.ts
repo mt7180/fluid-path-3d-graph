@@ -6,6 +6,7 @@ export type NodeType =
   | 'degree'
   | 'field'
   | 'firstJob'
+  | 'company'
   | 'placement'
   | 'currentRole';
 

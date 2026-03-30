@@ -29,7 +29,7 @@ export class LabelRenderer {
         return this.labelRenderer;
     }
 
-    createLabels(nodes: GraphNode[], scene: THREE.Scene, nodeRadii?: Map<string, number>): void {
+    createLabels(nodes: GraphNode[], scene: THREE.Scene): void {
         this.labels.clear();
 
         for (const node of nodes) {
@@ -38,20 +38,20 @@ export class LabelRenderer {
             div.textContent = node.label;
 
             const labelObj = new CSS2DObject(div);
-            const radius = nodeRadii?.get(node.id) ?? 3.5;
-            labelObj.position.set(node.position.x, node.position.y + radius + 1.5, node.position.z);
+            //const radius = nodeRadii?.get(node.id) ?? 3.5;
+            labelObj.position.set(node.position.x, node.position.y, node.position.z);
             scene.add(labelObj);
 
             this.labels.set(node.id, { css2dObject: labelObj, element: div });
         }
     }
 
-    updatePositions(nodes: Array<{ id: string; position: { x: number; y: number; z: number } }>, nodeRadii?: Map<string, number>): void {
+    updatePositions(nodes: Array<{ id: string; position: { x: number; y: number; z: number } }>): void {
         for (const node of nodes) {
             const labelData = this.labels.get(node.id);
             if (!labelData) continue;
-            const radius = nodeRadii?.get(node.id) ?? 3.5;
-            labelData.css2dObject.position.set(node.position.x, node.position.y + radius + 1.5, node.position.z);
+            //const radius = nodeRadii?.get(node.id) ?? 3.5;
+            labelData.css2dObject.position.set(node.position.x, node.position.y, node.position.z);
         }
     }
 
@@ -69,9 +69,9 @@ export class LabelRenderer {
                 // Full visibility
                 labelData.element.style.opacity = '1';
                 labelData.element.style.visibility = 'visible';
-            } else if (distance >= 100 && distance <= 200) {
+            } else if (distance >= 100 && distance <= 500) {
                 // Opacity scales down linearly from 1.0 to 0.0
-                const t = (distance - 100) / (200 - 100);
+                const t = (distance - 100) / (500 - 100);
                 const opacity = Math.max(0, 1.0 - t);
                 
                 labelData.element.style.opacity = opacity.toString();

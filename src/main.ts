@@ -83,7 +83,7 @@ function init() {
 
   const labelRenderer = new LabelRenderer();
   const css2dRenderer = labelRenderer.init(uiOverlay);
-  labelRenderer.createLabels(graphData.nodes, scene, nodeRadii);
+  labelRenderer.createLabels(graphData.nodes, scene);
 
   const infoPanel = new InfoPanel();
   infoPanel.init(uiOverlay);
@@ -111,7 +111,7 @@ function init() {
 
     const nodes = simulation.getNodes();
     nodeRenderer.updatePositions(nodes);
-    labelRenderer.updatePositions(nodes, nodeRadii);
+    labelRenderer.updatePositions(nodes);
     nodeRenderer.updateAnimations(time);
 
     const nodePositions = buildNodePositionMap(nodes);

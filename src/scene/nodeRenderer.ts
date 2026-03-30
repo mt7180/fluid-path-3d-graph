@@ -15,8 +15,8 @@ type NodeVisual = {
 };
 
 const BASE_RADIUS = 2.0;
-const RADIUS_STEP = 1.0;
-const MAX_RADIUS = 8.0;
+const RADIUS_STEP = 2.5;
+const MAX_RADIUS = 20.0;
 
 const DEFAULT_OUTER_OPACITY = 0.4;
 const DEFAULT_EMISSIVE_INTENSITY = 0.35;

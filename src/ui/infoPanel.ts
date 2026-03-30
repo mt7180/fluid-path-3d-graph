@@ -11,6 +11,7 @@ export class InfoPanel {
       degree: "Degree",
       field: "Field of Study",
       firstJob: "First Job",
+      company: "Company",
       placement: "E.ON Placement",
       currentRole: "Current Role"
     };
