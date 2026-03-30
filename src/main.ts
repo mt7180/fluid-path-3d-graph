@@ -38,7 +38,7 @@ function init() {
 
   const nodeRenderer = new NodeRenderer();
   const nodeMeshes = nodeRenderer.createNodes(graphData, scene);
-  const nodeRadii = nodeRenderer.getNodeRadii();
+  //const nodeRadii = nodeRenderer.getNodeRadii();
 
   for (let i = 0; i < 100; i += 1) {
     simulation.tick(0.016);
