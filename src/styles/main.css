@@ -54,29 +54,6 @@ body {
   overflow: hidden;
 }
 
-.node-label {
-  font-size: 28px;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 0 22px rgba(0, 136, 255, 0.6), 0 0 44px rgba(0, 136, 255, 0.3);
-  letter-spacing: 0.5px;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  transition: opacity 0.4s var(--transition-smooth), font-size 0.4s var(--transition-smooth), text-shadow 0.4s var(--transition-smooth);
-  transform: translateY(-16px);
-  will-change: opacity, transform;
-}
-
-.node-label.highlighted {
-  color: #ffffff;
-  font-size: 34px;
-  text-shadow: 0 0 28px rgba(0, 229, 255, 0.8), 0 0 56px rgba(0, 229, 255, 0.4);
-  letter-spacing: 1px;
-}
-
-.node-label.dimmed {
-  opacity: 0.15;
-}
 
 body.interactive-hover {
   cursor: pointer;
@@ -94,11 +71,3 @@ body.interactive-hover {
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .node-label {
-    font-size: 22px;
-  }
-  .node-label.highlighted {
-    font-size: 28px;
-  }
-}

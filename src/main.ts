@@ -38,7 +38,7 @@ function init() {
 
   const nodeRenderer = new NodeRenderer();
   const nodeMeshes = nodeRenderer.createNodes(graphData, scene);
-  //const nodeRadii = nodeRenderer.getNodeRadii();
+  const nodeRadii = nodeRenderer.getNodeRadii();
 
   for (let i = 0; i < 100; i += 1) {
     simulation.tick(0.016);
@@ -82,8 +82,8 @@ function init() {
   raycaster.init(camera, renderer.domElement, nodeMeshes);
 
   const labelRenderer = new LabelRenderer();
-  const css2dRenderer = labelRenderer.init(uiOverlay);
-  labelRenderer.createLabels(graphData.nodes, scene);
+  labelRenderer.init();
+  labelRenderer.createLabels(graphData.nodes, nodeMeshes, nodeRadii);
 
   const infoPanel = new InfoPanel();
   infoPanel.init(uiOverlay);
@@ -111,7 +111,6 @@ function init() {
 
     const nodes = simulation.getNodes();
     nodeRenderer.updatePositions(nodes);
-    labelRenderer.updatePositions(nodes);
     nodeRenderer.updateAnimations(time);
 
     const nodePositions = buildNodePositionMap(nodes);
@@ -133,7 +132,6 @@ function init() {
     labelRenderer.update(camera);
 
     composer.render();
-    css2dRenderer.render(scene, camera);
   }
 
   renderer.setAnimationLoop(animate);
@@ -142,7 +140,6 @@ function init() {
     const width = window.innerWidth;
     const height = window.innerHeight;
     resizePostprocessing(composer, width, height, renderer.getPixelRatio());
-    css2dRenderer.setSize(width, height);
   });
 }
 
